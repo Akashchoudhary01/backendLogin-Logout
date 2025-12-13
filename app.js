@@ -1,8 +1,14 @@
-const express = require('express');
+import express from 'express';
+import userRoutes from './Router/authRoute.js';
+
 const app = express();
 
 app.use(express.json());
-app.use('/' , (req , res)=>{
-    res.status(200).json({data : 'jwtAuth'})
+
+app.use('/api/user', userRoutes);
+
+app.get('/', (req, res) => {
+    res.status(200).json({ data: 'jwtAuth API running' });
 });
-module.exports = app;
+
+export default app;
