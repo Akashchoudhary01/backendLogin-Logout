@@ -1,7 +1,10 @@
 import express from 'express';
 import userRoutes from './Router/authRoute.js';
+import databaseConnect from './Config/databaseConfig.js';
+databaseConnect();
 
 const app = express();
+
 
 app.use(express.json());
 
