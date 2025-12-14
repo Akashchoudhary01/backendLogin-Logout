@@ -1,12 +1,14 @@
 import express from 'express';
 import userRoutes from './Router/authRoute.js';
-import databaseConnect from './Config/databaseConfig.js';
-databaseConnect();
+import {databaseConnect} from './Config/databaseConfig.js';
+import dotenv from "dotenv";
 
+databaseConnect();
 const app = express();
 
 
 app.use(express.json());
+dotenv.config();
 
 app.use('/api/user', userRoutes);
 
