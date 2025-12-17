@@ -4,6 +4,13 @@ const signup = async (req, res , next) => {
     const { name, email, password, confirmPassword } = req.body;
 
     console.log(name, email, password, confirmPassword);
+    if(!name || !email || !password || !confirmPassword){
+        return res.status(400).json({
+            success: false,
+            message: "Every Fild is mendatory"
+        })
+
+    }
 
     try {
          const userInfo = userModel(req.body);
