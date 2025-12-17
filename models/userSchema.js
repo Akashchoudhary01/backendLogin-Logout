@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
-
+import JWT from 'jsonwebtoken';
 import { Schema } from "mongoose";
+import dotenv from "dotenv";
+dotenv.config(); 
 
 const userSchema = new Schema({
   name: {
@@ -24,6 +26,16 @@ const userSchema = new Schema({
   forgotPasswordToken: String,
   forgotPasswordExpirt: Date,
 }, { timestamps: true });
+
+userSchema.methods = {
+  jwtToken(){
+    return JWT.sign(
+      {id: this._id , email:this.email},
+      process.env.SECRET_KEY,
+      {expiresIn : '24h'}
+    )
+  }
+}
 
 
 export const userModel = mongoose.model('user' , userSchema)
