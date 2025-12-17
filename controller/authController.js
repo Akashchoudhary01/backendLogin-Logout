@@ -1,4 +1,5 @@
 import { userModel } from "../models/userSchema.js";
+import emailValidator from 'email-validator';
 
 const signup = async (req, res , next) => {
     const { name, email, password, confirmPassword } = req.body;
@@ -11,6 +12,7 @@ const signup = async (req, res , next) => {
         })
 
     }
+    const validEmail = emailValidator.validate(email);
 
     try {
          const userInfo = userModel(req.body);
