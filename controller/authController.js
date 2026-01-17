@@ -1,7 +1,7 @@
 import { userModel } from "../models/userSchema.js";
 import emailValidator from "email-validator";
 
-const signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
   console.log(name, email, password, confirmPassword);
@@ -50,6 +50,10 @@ const signup = async (req, res, next) => {
   }
 };
 
+//////////////////////////////////
+///////// signIn ////////////////
+//////////////////////////////////
+
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -97,4 +101,5 @@ export const signIn = async (req, res) => {
 
 };
 
-export default signup;
+
+
