@@ -99,7 +99,13 @@ export const signIn = async (req, res) => {
     
   }
 
+
+
 };
+
+export const getUser = (res , req , next)=>{
+
+}
 
 
 
