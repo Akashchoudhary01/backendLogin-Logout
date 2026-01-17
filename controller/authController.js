@@ -103,20 +103,30 @@ export const signIn = async (req, res) => {
 
 };
 
-export const getUser = async(res , req , next)=>{
+export const getUser = async (req, res, next) => {
+  if (!req.user || !req.user.id) {
+    return res.status(401).json({
+      success: false,
+      message: "User not authenticated",
+    });
+  }
+
   const userId = req.user.id;
 
   try {
     const user = await userModel.findById(userId);
-    
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
   } catch (e) {
-     res.status(400).json({
-        success: false,
-        message : "Invalid credintials"
-    })
-    
+    res.status(400).json({
+      success: false,
+      message: "Invalid credentials",
+    });
   }
-}
+};
+
 
 
 

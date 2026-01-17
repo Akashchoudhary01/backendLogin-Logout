@@ -2,9 +2,13 @@ import express from 'express';
 import userRoutes from './Router/authRoute.js';
 import {databaseConnect} from './Config/databaseConfig.js';
 import dotenv from "dotenv";
+import cookieParser from 'cookie-parser';
 
 databaseConnect();
 const app = express();
+
+//cookie-Parser
+app.use(cookieParser());
 
 
 app.use(express.json());
