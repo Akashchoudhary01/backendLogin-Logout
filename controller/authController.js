@@ -103,8 +103,19 @@ export const signIn = async (req, res) => {
 
 };
 
-export const getUser = (res , req , next)=>{
+export const getUser = async(res , req , next)=>{
+  const userId = req.user.id;
 
+  try {
+    const user = await userModel.findById(userId);
+    
+  } catch (e) {
+     res.status(400).json({
+        success: false,
+        message : "Invalid credintials"
+    })
+    
+  }
 }
 
 
